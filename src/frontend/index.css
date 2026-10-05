@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Font Faces ─────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* ── Agriculture Green + Deep Teal Palette ── */
+
+    /* Backgrounds */
+    --background: 0.97 0.008 145;
+    --foreground: 0.15 0.025 155;
+
+    /* Card / Surface */
+    --card: 0.99 0.004 145;
+    --card-foreground: 0.15 0.025 155;
+
+    /* Popover */
+    --popover: 0.99 0.004 145;
+    --popover-foreground: 0.15 0.025 155;
+
+    /* Primary: deep forest green */
+    --primary: 0.38 0.12 155;
+    --primary-foreground: 0.99 0 0;
+
+    /* Secondary: soft sage */
+    --secondary: 0.92 0.03 145;
+    --secondary-foreground: 0.25 0.08 155;
+
+    /* Muted */
+    --muted: 0.94 0.015 145;
+    --muted-foreground: 0.5 0.03 155;
+
+    /* Accent: teal */
+    --accent: 0.88 0.06 175;
+    --accent-foreground: 0.18 0.08 175;
+
+    /* Destructive: warm red */
+    --destructive: 0.54 0.22 25;
+    --destructive-foreground: 0.99 0 0;
+
+    /* Border / Input / Ring */
+    --border: 0.88 0.02 155;
+    --input: 0.88 0.02 155;
+    --ring: 0.42 0.12 165;
+
+    /* Status Colors */
+    --healthy: 0.55 0.16 155;
+    --healthy-bg: 0.93 0.06 155;
+    --healthy-fg: 0.25 0.1 155;
+
+    --monitor: 0.72 0.17 75;
+    --monitor-bg: 0.96 0.07 85;
+    --monitor-fg: 0.35 0.12 60;
+
+    --alert: 0.58 0.22 28;
+    --alert-bg: 0.96 0.06 25;
+    --alert-fg: 0.3 0.15 25;
+
+    --offline: 0.65 0.2 48;
+    --offline-bg: 0.95 0.07 55;
+
+    /* Charts */
+    --chart-1: 0.55 0.16 155;
+    --chart-2: 0.65 0.17 195;
+    --chart-3: 0.72 0.17 75;
+    --chart-4: 0.58 0.22 28;
+    --chart-5: 0.5 0.14 270;
+
+    /* Sidebar */
+    --sidebar: 0.22 0.06 155;
+    --sidebar-foreground: 0.95 0.02 145;
+    --sidebar-primary: 0.65 0.18 155;
+    --sidebar-primary-foreground: 0.99 0 0;
+    --sidebar-accent: 0.3 0.08 155;
+    --sidebar-accent-foreground: 0.95 0.02 145;
+    --sidebar-border: 0.32 0.08 155;
+    --sidebar-ring: 0.55 0.16 155;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+}
+
+/* ── Custom Utilities ────────────────────────────────────────────────── */
+@layer utilities {
+  .status-healthy {
+    background-color: oklch(var(--healthy-bg));
+    color: oklch(var(--healthy-fg));
+  }
+  .status-monitor {
+    background-color: oklch(var(--monitor-bg));
+    color: oklch(var(--monitor-fg));
+  }
+  .status-alert {
+    background-color: oklch(var(--alert-bg));
+    color: oklch(var(--alert-fg));
+  }
+
+  .bg-healthy { background-color: oklch(var(--healthy)); }
+  .bg-monitor { background-color: oklch(var(--monitor)); }
+  .bg-alert { background-color: oklch(var(--alert)); }
+  .text-healthy { color: oklch(var(--healthy-fg)); }
+  .text-monitor { color: oklch(var(--monitor-fg)); }
+  .text-alert { color: oklch(var(--alert-fg)); }
+
+  .bg-offline { background-color: oklch(var(--offline)); }
+  .text-offline { color: oklch(var(--offline)); }
+
+  .bg-healthy-bg { background-color: oklch(var(--healthy-bg)); }
+  .bg-monitor-bg { background-color: oklch(var(--monitor-bg)); }
+  .bg-alert-bg { background-color: oklch(var(--alert-bg)); }
+  .text-healthy-fg { color: oklch(var(--healthy-fg)); }
+  .text-monitor-fg { color: oklch(var(--monitor-fg)); }
+  .text-alert-fg { color: oklch(var(--alert-fg)); }
+
+  .gradient-hero {
+    background: linear-gradient(
+      135deg,
+      oklch(0.22 0.07 155) 0%,
+      oklch(0.3 0.1 170) 50%,
+      oklch(0.25 0.08 155) 100%
+    );
+  }
+}
+
+/* ── Scrollbar Styling ───────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(var(--muted));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground));
+}
+
+/* ── Animations ──────────────────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 oklch(0.55 0.22 28 / 0.4); }
+  70% { box-shadow: 0 0 0 8px oklch(0.55 0.22 28 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.55 0.22 28 / 0); }
+}
+
+@keyframes sync-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.animate-sync {
+  animation: sync-spin 1s linear infinite;
+}
+
+/* ── Keyframes for tailwindcss-animate ───────────────────────────────── */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
